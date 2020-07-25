@@ -28,6 +28,6 @@ Fetching data from the network and integrating persisted data in the database vi
 
 
 ## Architecture
-MarvelHeroes is based on MVVM architecture and a repository pattern.
+Movie Database is based on MVVM architecture and a repository pattern.
 
 ![architecture](https://user-images.githubusercontent.com/24237865/77502018-f7d36000-6e9c-11ea-92b0-1097240c8689.png)
