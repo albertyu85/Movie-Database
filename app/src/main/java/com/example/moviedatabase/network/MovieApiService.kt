@@ -13,16 +13,16 @@ const val API_KEY = "125084375dc1278f41dc6bc38687614f"
 
 interface MovieApiService {
 
-    @GET("/movie/now_playing")
-    fun getNowPlaying(@Query("page") page : Int = 1) : MovieResult
+    @GET("movie/now_playing")
+    suspend fun getNowPlaying(@Query("page") page : Int = 1) : MovieResult
 
-    @GET("/movie/popular")
+    @GET("movie/popular")
     fun getPopular(@Query("page") page : Int = 1) : MovieResult
 
-    @GET("/movie/top_rated")
+    @GET("movie/top_rated")
     fun getTopRated(@Query("page") page : Int = 1) : MovieResult
 
-    @GET("/movie/upcoming")
+    @GET("movie/upcoming")
     fun getUpcoming(@Query("page") page : Int = 1) : MovieResult
 
     companion object {
