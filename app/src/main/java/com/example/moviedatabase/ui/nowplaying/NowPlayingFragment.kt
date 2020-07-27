@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.LinearLayout
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviedatabase.R
+import com.example.moviedatabase.databinding.NowPlayingFragmentBinding
 import com.example.moviedatabase.model.Movie
 import com.example.moviedatabase.network.MovieApiService
 import com.example.moviedatabase.ui.adapter.MovieAdapter
@@ -27,44 +30,30 @@ class NowPlayingFragment : Fragment() {
             NowPlayingFragment()
     }
 
-    private lateinit var viewModel: NowPlayingViewModel
+    private val viewModel : NowPlayingViewModel by viewModels()
+    private lateinit var binding : NowPlayingFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.now_playing_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.now_playing_fragment, container, false)
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = viewModel
+            adapter = MovieAdapter()
+        }
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NowPlayingViewModel::class.java)
-//        val id = intArrayOf(1, 2, 3, 4)
-//        val movie1 = Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title", "asdfasdf", 2.2, 4, 2.2 )
+
         viewModel.getNowPlayingList()
 
-//        val list = mutableListOf(Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title", "asdfasdf", 2.2, 4, 2.2 ),
-//            Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title", "asdfasdf", 2.2, 4, 2.2 ) ,
-//            Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title 2", "asdfasdf", 2.2, 4, 2.2 ),
-//            Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title 3", "asdfasdf", 2.2, 4, 2.2 ),
-//            Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title 4", "asdfasdf", 2.2, 4, 2.2 ),
-//            Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title 5", "asdfasdf", 2.2, 4, 2.2 ),
-//            Movie("asdfasdfasdf", "asdf", "ASDF", id, 1, "asdf", "adsfasd", "Testing Movie Title 6", "asdfasdf", 2.2, 4, 2.2 ))
-        val adapter = MovieAdapter()
-        nowPlaying_recyclerView.layoutManager = GridLayoutManager(context, 2)
         viewModel.response.observe(viewLifecycleOwner, Observer {
-            adapter.items = it.results
-            nowPlaying_recyclerView.adapter = adapter
+            binding.adapter?.items = it.results
         })
-//        GlobalScope.launch(Dispatchers.Main) {
-//            val response = MovieApiService().getNowPlaying()
-//            //nowPlaying_textView.text = response.results[1].title
-//
-//        }
-
-
-
-
     }
 
 }
