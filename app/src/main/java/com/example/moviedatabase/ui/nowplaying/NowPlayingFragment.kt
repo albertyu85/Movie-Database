@@ -33,27 +33,27 @@ class NowPlayingFragment : Fragment() {
     private val viewModel : NowPlayingViewModel by viewModels()
     private lateinit var binding : NowPlayingFragmentBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.now_playing_fragment, container, false)
-        binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = viewModel
-            adapter = MovieAdapter()
-        }
-        return binding.root
+override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+): View? {
+    binding = DataBindingUtil.inflate(inflater, R.layout.now_playing_fragment, container, false)
+    binding.apply {
+        lifecycleOwner = viewLifecycleOwner
+        viewModel = viewModel
+        adapter = MovieAdapter()
     }
+    return binding.root
+}
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
 
-        viewModel.getNowPlayingList()
+    viewModel.getNowPlayingList()
 
-        viewModel.response.observe(viewLifecycleOwner, Observer {
-            binding.adapter?.items = it.results
-        })
-    }
+    viewModel.response.observe(viewLifecycleOwner, Observer {
+        binding.adapter?.items = it.results
+    })
+}
 
 }
