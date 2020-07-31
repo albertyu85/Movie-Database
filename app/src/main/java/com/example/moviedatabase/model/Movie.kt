@@ -14,7 +14,6 @@ data class Movie(
     val overview: String,
     @SerializedName("release_date")
     val releaseDate: String,
-    @SerializedName("genre_ids")
     val id: Int,
     @SerializedName("original_title")
     val originalTitle: String,

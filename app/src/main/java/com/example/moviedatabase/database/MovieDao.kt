@@ -9,9 +9,10 @@ interface MovieDao {
     fun getAllNowPlaying() : List<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNowPlaying(movie : Movie) {
-        movie.type = "Now Playing"
-    }
+    fun insertNowPlaying(movie : Movie)
+
+    @Query("SELECT * FROM movie_table WHERE id = :id LIMIT 1")
+    fun getMovieById(id: Int) : Movie
 
     @Delete
     fun delete(movie: Movie)
