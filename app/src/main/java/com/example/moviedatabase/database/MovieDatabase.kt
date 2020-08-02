@@ -10,25 +10,4 @@ import com.example.moviedatabase.model.Movie
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao() : MovieDao
-
-    companion object {
-        @Volatile private var INSTANCE : MovieDatabase? = null
-
-        fun getInstance(context: Context) : MovieDatabase =
-            INSTANCE
-                ?: synchronized(this) {
-                INSTANCE
-                    ?: buildDatabase(
-                        context
-                    )
-                        .also { INSTANCE = it}
-            }
-
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext,
-                MovieDatabase::class.java,
-                "Movie.db")
-                .fallbackToDestructiveMigration()
-                .build()
-    }
 }

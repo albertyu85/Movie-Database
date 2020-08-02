@@ -17,13 +17,14 @@ class NowPlayingViewModel(private val repo : MovieRepository) : ViewModel() {
         get() = job + Dispatchers.IO
     private val scope = CoroutineScope(coroutineContext)
 
-    private var movieList = MutableLiveData<MovieResult>()
-    val response : LiveData<MovieResult>
+    private var movieList = MutableLiveData<List<Movie>>()
+    val response : LiveData<List<Movie>>
         get() = movieList
 
     fun getNowPlayingList() {
         scope.launch() {
-            val response = repo.fetchNowPlaying()
+            repo.fetchNowPlaying()
+            val response = repo.getNowPlaying()
             movieList.postValue(response)
         }
     }

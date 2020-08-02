@@ -22,9 +22,9 @@ fun setAdapter(view: RecyclerView, baseAdapter: RecyclerView.Adapter<*>) {
 }
 
 @BindingAdapter("bind:items")
-fun setItems(view: RecyclerView, items: MutableList<Movie>?) {
+fun setItems(view: RecyclerView, items: List<Movie>?) {
     view.adapter = MovieAdapter().apply {
-        this.items = items ?: mutableListOf()
+        this.items = items?.toMutableList() ?: mutableListOf()
         notifyDataSetChanged()
     }
 }

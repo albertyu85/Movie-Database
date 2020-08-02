@@ -43,7 +43,7 @@ override fun onActivityCreated(savedInstanceState: Bundle?) {
     viewModel.getNowPlayingList()
 
     viewModel.response.observe(viewLifecycleOwner, Observer {
-        binding.adapter?.items = it.results
+        binding.adapter?.items = it.toMutableList()
     })
 }
 
