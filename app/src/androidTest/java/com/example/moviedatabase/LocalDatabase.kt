@@ -1,5 +1,6 @@
 package com.example.moviedatabase
 
+import android.app.Activity
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
@@ -40,6 +41,5 @@ class LocalDatabase {
         movieDao.insertNowPlaying(movie)
         val retrieve = movieDao.getMovieById(385103)
         assert(retrieve.title.equals("Scoob!"))
-
     }
 }

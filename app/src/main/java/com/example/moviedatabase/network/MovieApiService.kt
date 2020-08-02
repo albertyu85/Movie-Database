@@ -25,32 +25,4 @@ interface MovieApiService {
     @GET("movie/upcoming")
     fun getUpcoming(@Query("page") page : Int = 1) : MovieResult
 
-    companion object {
-        operator fun invoke() : MovieApiService {
-            val requestInterceptor = Interceptor {
-                val url = it.request()
-                    .url()
-                    .newBuilder()
-                    .addQueryParameter("api_key", API_KEY)
-                    .build()
-                val request = it.request()
-                    .newBuilder()
-                    .url(url)
-                    .build()
-
-                return@Interceptor it.proceed(request)
-            }
-
-            val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(requestInterceptor)
-                .build()
-
-            return Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl("https://api.themoviedb.org/3/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(MovieApiService::class.java)
-        }
-    }
 }

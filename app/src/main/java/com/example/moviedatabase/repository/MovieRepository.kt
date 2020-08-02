@@ -11,11 +11,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MovieRepository(val client: MovieApiService) {
+class MovieRepository(private val client: MovieApiService) {
 
-    private val nowPlayingResponse : MutableLiveData<MovieResult> = MutableLiveData<MovieResult>()
-
-    suspend fun loadNowPlaying(page: Int = 1) : MovieResult {
+    suspend fun fetchNowPlaying(page: Int = 1) : MovieResult {
         return client.getNowPlaying(page)
     }
 }
