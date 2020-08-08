@@ -1,10 +1,7 @@
 package com.example.moviedatabase
 
 import android.app.Application
-import com.example.moviedatabase.di.networkModule
-import com.example.moviedatabase.di.persistenceModule
-import com.example.moviedatabase.di.repositoryModule
-import com.example.moviedatabase.di.viewModelModule
+import com.example.moviedatabase.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -19,6 +16,7 @@ class MovieApplication : Application() {
             modules(repositoryModule)
             modules(viewModelModule)
             modules(persistenceModule)
+            modules(dataSourceModule)
         }
     }
 }

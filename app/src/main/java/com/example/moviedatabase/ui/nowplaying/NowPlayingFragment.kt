@@ -1,6 +1,7 @@
 package com.example.moviedatabase.ui.nowplaying
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.moviedatabase.R
+import com.example.moviedatabase.repository.Resource
 import com.example.moviedatabase.databinding.NowPlayingFragmentBinding
 import com.example.moviedatabase.ui.adapter.MovieAdapter
 import org.koin.android.ext.android.get
-import org.koin.android.viewmodel.ext.android.getViewModel
 
 class NowPlayingFragment : Fragment() {
 
@@ -40,10 +41,22 @@ override fun onCreateView(
 
 override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    viewModel.getNowPlayingList()
+//    viewModel.getNowPlayingList()
 
-    viewModel.response.observe(viewLifecycleOwner, Observer {
-        binding.adapter?.items = it.toMutableList()
+//    viewModel.response.observe(viewLifecycleOwner, Observer {
+//        binding.adapter?.items = it.toMutableList()
+//    })
+
+    viewModel.movies.observe(viewLifecycleOwner, Observer {
+        when (it.status) {
+            Resource.Status.SUCCESS -> {
+                if (!it.data.isNullOrEmpty()) {
+                    Log.d("ViewModel", "Success, binding to adapter")
+                    Log.d("ViewMode", "${it.data}")
+                    binding?.adapter?.setItems(ArrayList(it.data))
+                }
+            }
+        }
     })
 }
 

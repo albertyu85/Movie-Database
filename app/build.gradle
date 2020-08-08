@@ -8,6 +8,9 @@ apply plugin: "androidx.navigation.safeargs"
 android {
     compileSdkVersion 29
 
+    kotlinOptions {
+        freeCompilerArgs = ["-Xallow-result-return-type"]
+    }
     testOptions {
         unitTests {
             includeAndroidResources = true

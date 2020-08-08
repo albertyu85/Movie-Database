@@ -1,11 +1,10 @@
-package com.example.moviedatabase
+package com.example.moviedatabase.ui.adapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.model.Movie
-import com.example.moviedatabase.ui.adapter.MovieAdapter
 
 private const val baseURL = "https://image.tmdb.org/t/p/w500"
 
@@ -23,8 +22,10 @@ fun setAdapter(view: RecyclerView, baseAdapter: RecyclerView.Adapter<*>) {
 
 @BindingAdapter("bind:items")
 fun setItems(view: RecyclerView, items: List<Movie>?) {
-    view.adapter = MovieAdapter().apply {
-        this.items = items?.toMutableList() ?: mutableListOf()
-        notifyDataSetChanged()
-    }
+//    view.adapter = MovieAdapter().apply {
+//        if (!items.isNullOrEmpty()) {
+//            setItems(ArrayList(items))
+//        }
+//        notifyDataSetChanged()
+//    }
 }

@@ -34,7 +34,6 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             android:paddingBottom="50dp"
-            bind:items="@{viewModel.response}"
             bind:adapter="@{adapter}"
             tools:listitem="@layout/item_movie" />
 

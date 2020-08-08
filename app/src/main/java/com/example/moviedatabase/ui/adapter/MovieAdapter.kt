@@ -13,12 +13,13 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
-    var items = mutableListOf<Movie>()
-    set(value) {
-        field = value
+    private val items = ArrayList<Movie>()
+
+    fun setItems(items: ArrayList<Movie>) {
+        this.items.clear()
+        this.items.addAll(items)
         notifyDataSetChanged()
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemMovieBinding.inflate(inflater)
