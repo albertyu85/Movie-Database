@@ -4,7 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.moviedatabase.model.Movie
+import com.example.moviedatabase.model.NowPlayingMovie
 
 private const val baseURL = "https://image.tmdb.org/t/p/w500"
 
@@ -21,7 +21,7 @@ fun setAdapter(view: RecyclerView, baseAdapter: RecyclerView.Adapter<*>) {
 }
 
 @BindingAdapter("bind:items")
-fun setItems(view: RecyclerView, items: List<Movie>?) {
+fun setItems(view: RecyclerView, items: List<NowPlayingMovie>?) {
 //    view.adapter = MovieAdapter().apply {
 //        if (!items.isNullOrEmpty()) {
 //            setItems(ArrayList(items))

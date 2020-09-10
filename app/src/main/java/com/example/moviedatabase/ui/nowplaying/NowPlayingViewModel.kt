@@ -3,7 +3,7 @@ package com.example.moviedatabase.ui.nowplaying
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviedatabase.repository.Resource
-import com.example.moviedatabase.model.Movie
+import com.example.moviedatabase.model.NowPlayingMovie
 import com.example.moviedatabase.repository.MovieRepository
 
 class NowPlayingViewModel(private val repo : MovieRepository) : ViewModel() {
@@ -30,5 +30,5 @@ class NowPlayingViewModel(private val repo : MovieRepository) : ViewModel() {
 //        job.cancel()
 //    }
 
-    val movies : LiveData<Resource<List<Movie>>> = repo.getNowPlaying()
+    val movies : LiveData<Resource<List<NowPlayingMovie>>> = repo.getNowPlaying()
 }

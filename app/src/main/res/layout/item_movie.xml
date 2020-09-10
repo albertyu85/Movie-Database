@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.example.moviedatabase.model.Movie" />
+            type="com.example.moviedatabase.model.NowPlayingMovie" />
     </data>
 
     <com.skydoves.transformationlayout.TransformationLayout

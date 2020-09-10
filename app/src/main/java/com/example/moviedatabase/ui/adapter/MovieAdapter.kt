@@ -1,21 +1,16 @@
 package com.example.moviedatabase.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.ItemMovieBinding
-import com.example.moviedatabase.model.Movie
-import kotlinx.android.synthetic.main.item_movie.view.*
+import com.example.moviedatabase.model.NowPlayingMovie
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
-    private val items = ArrayList<Movie>()
+    private val items = ArrayList<NowPlayingMovie>()
 
-    fun setItems(items: ArrayList<Movie>) {
+    fun setItems(items: ArrayList<NowPlayingMovie>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()

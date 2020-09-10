@@ -2,23 +2,23 @@ package com.example.moviedatabase.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.moviedatabase.model.Movie
+import com.example.moviedatabase.model.NowPlayingMovie
 //
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM movie_table WHERE type = 'Now Playing'")
-    fun getAllNowPlaying() : LiveData<List<Movie>>
+    @Query("SELECT * FROM now_playing_movie_table")
+    fun getAllNowPlaying() : LiveData<List<NowPlayingMovie>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNowPlaying(movie : Movie)
+    fun insertNowPlaying(movie : NowPlayingMovie)
 
-    @Query("SELECT * FROM movie_table WHERE id = :id LIMIT 1")
-    fun getMovieById(id: Int) : LiveData<Movie>
+    @Query("SELECT * FROM now_playing_movie_table WHERE id = :id LIMIT 1")
+    fun getMovieById(id: Int) : LiveData<NowPlayingMovie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllNowPlaying(movies : List<Movie>)
+    fun insertAllNowPlaying(movies : List<NowPlayingMovie>)
 
     @Delete
-    fun delete(movie: Movie)
+    fun delete(movie: NowPlayingMovie)
 
 }

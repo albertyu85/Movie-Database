@@ -15,10 +15,13 @@ class MovieRepository(private val remoteDataSource: MovieRemoteDataSource, priva
 //
 //    }
 
-    fun getNowPlaying()  = performGetOperation(
-        databaseQuery = {dao.getAllNowPlaying()},
-        networkCall = { remoteDataSource.getNowPlayingMovies() },
-        saveCallResult = {dao.insertAllNowPlaying(it.results)}
+    fun getNowPlaying() =
+        performGetOperation(
+            databaseQuery = {dao.getAllNowPlaying()},
+            networkCall = { remoteDataSource.getNowPlayingMovies() },
+            saveCallResult = {dao.insertAllNowPlaying(it.results)}
+        )
 
-    )
+
+
 }
