@@ -10,9 +10,17 @@ private const val baseURL = "https://image.tmdb.org/t/p/w500"
 
 @BindingAdapter("image")
 fun loadImage(movieImageView: ImageView, url: String) {
-    Glide.with(movieImageView.context)
-        .load(baseURL + url)
-        .into(movieImageView)
+    if (url == null) {
+        Glide.with(movieImageView.context)
+            .load("https://image.tmdb.org/t/p/w500/q5uZqd324Tug2xWxL72j18ZzK2Z.jpg")
+            .into(movieImageView)
+    }
+    else {
+        Glide.with(movieImageView.context)
+            .load(baseURL + url)
+            .into(movieImageView)
+    }
+
 }
 
 @BindingAdapter("bind:adapter")

@@ -6,7 +6,7 @@ import com.example.moviedatabase.repository.Resource
 import com.example.moviedatabase.model.NowPlayingMovie
 import com.example.moviedatabase.repository.MovieRepository
 
-class NowPlayingViewModel(private val repo : MovieRepository) : ViewModel() {
+class NowPlayingViewModel(repo : MovieRepository) : ViewModel() {
 
 //    private val job = Job()
 //    private val coroutineContext : CoroutineContext

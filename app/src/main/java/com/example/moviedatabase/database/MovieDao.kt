@@ -13,7 +13,7 @@ interface MovieDao {
     fun insertNowPlaying(movie : NowPlayingMovie)
 
     @Query("SELECT * FROM now_playing_movie_table WHERE id = :id LIMIT 1")
-    fun getMovieById(id: Int) : LiveData<NowPlayingMovie>
+    fun getNowPlayingMovieById(id: Int) : LiveData<NowPlayingMovie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllNowPlaying(movies : List<NowPlayingMovie>)

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.ItemMovieBinding
 import com.example.moviedatabase.model.NowPlayingMovie
-import com.example.moviedatabase.ui.DetailFragmentArgs
 import com.example.moviedatabase.ui.nowplaying.NowPlayingFragmentDirections
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {

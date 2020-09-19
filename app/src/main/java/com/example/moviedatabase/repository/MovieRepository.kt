@@ -1,7 +1,13 @@
 package com.example.moviedatabase.repository
 
+import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import com.example.moviedatabase.network.MovieRemoteDataSource
 import com.example.moviedatabase.database.MovieDao
+import com.example.moviedatabase.model.NowPlayingMovie
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MovieRepository(private val remoteDataSource: MovieRemoteDataSource, private val dao: MovieDao) {
 
@@ -22,6 +28,11 @@ class MovieRepository(private val remoteDataSource: MovieRemoteDataSource, priva
             saveCallResult = {dao.insertAllNowPlaying(it.results)}
         )
 
+    fun getNowPlayingId(id: Int) = liveData<Resource<NowPlayingMovie>>(Dispatchers.IO) {
+        emit(Resource.loading())
+        val source = dao.getNowPlayingMovieById(id).map { Resource.success(it) }
+        emitSource(source)
+    }
 
 
 }
