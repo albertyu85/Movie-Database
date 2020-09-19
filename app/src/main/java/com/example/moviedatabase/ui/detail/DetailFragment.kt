@@ -46,13 +46,20 @@ class DetailFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.detail_fragment, container, false)
 
-        viewModel.movie.observe(viewLifecycleOwner, Observer {
-            when(it.status) {
-                Resource.Status.SUCCESS -> {
-                    if (it.data != null) binding.movie = it.data
-                }
+        when(type) {
+            "Now Playing" -> {
+                Log.d("Detail", "entered Now playing")
+                    viewModel.nowPlayingMovie.observe(viewLifecycleOwner, Observer {
+                        when(it.status) {
+                            Resource.Status.SUCCESS -> {
+                                if (it.data != null) binding.movie = it.data
+                            }
+                        }
+                })
             }
-        })
+
+        }
+
 
         return binding.root
     }

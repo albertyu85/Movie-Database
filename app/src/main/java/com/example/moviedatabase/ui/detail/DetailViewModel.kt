@@ -1,6 +1,7 @@
 package com.example.moviedatabase.ui.detail
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.moviedatabase.model.NowPlayingMovie
@@ -9,8 +10,7 @@ import com.example.moviedatabase.repository.Resource
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class DetailViewModel(repo : MovieRepository, id : Int, type: String) : ViewModel() {
+class DetailViewModel(val repo : MovieRepository,val  id : Int, val type: String) : ViewModel() {
     // TODO: Implement the ViewModel
-
-    val movie : LiveData<Resource<NowPlayingMovie>> = repo.getNowPlayingId(id)
+    val nowPlayingMovie = repo.getNowPlayingId(id)
 }

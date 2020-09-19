@@ -9,7 +9,7 @@ import com.example.moviedatabase.model.NowPlayingMovie
 private const val baseURL = "https://image.tmdb.org/t/p/w500"
 
 @BindingAdapter("image")
-fun loadImage(movieImageView: ImageView, url: String) {
+fun loadImage(movieImageView: ImageView, url: String?) {
     if (url == null) {
         Glide.with(movieImageView.context)
             .load("https://image.tmdb.org/t/p/w500/q5uZqd324Tug2xWxL72j18ZzK2Z.jpg")
